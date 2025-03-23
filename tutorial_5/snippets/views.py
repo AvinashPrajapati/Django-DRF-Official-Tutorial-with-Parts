@@ -48,13 +48,13 @@ class SnippetHighlight(generics.GenericAPIView):
 from django.contrib.auth.models import User
 
 
-class UserList(generics.ListAPIView):
+class UserList(generics.ListAPIView):  # you can not create user because of the ListAPI
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
 
 
-class UserDetail(generics.RetrieveAPIView):
+class UserDetail(generics.RetrieveAPIView):  # you can not create user because of RetrieveAPI
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
