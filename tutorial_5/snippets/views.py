@@ -51,10 +51,10 @@ from django.contrib.auth.models import User
 class UserList(generics.ListCreateAPIView):  # you can not create user because of the ListAPI
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 
-class UserDetail(generics.RetrieveUpdateAPIView):  # you can not create user because of RetrieveAPI
+class UserDetail(generics.RetrieveUpdateAPIView):  # still can not delete user so to delete use RetriveUpdateDestroyAPIView
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
