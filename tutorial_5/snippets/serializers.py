@@ -18,11 +18,12 @@ class SnippetSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
+    url = serializers.HyperlinkedIdentityField(view_name='snippets:snippet-detail')
     snippets = serializers.HyperlinkedRelatedField(many=True, view_name='snippets:snippet-detail', read_only=True)
 
     class Meta:
         model = User
         fields = ['url', 'id', 'username', 'snippets']
-        extra_kwargs = {
-            'url': {'view_name': 'snippets:user-detail'},
-        }
+        # extra_kwargs = {
+        #     'url': {'view_name': 'snippets:user-detail'},
+        # }
