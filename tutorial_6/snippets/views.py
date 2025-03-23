@@ -12,9 +12,9 @@ from rest_framework.reverse import reverse
 def api_root(request, format=None):
     return Response(
         {
-            "users": reverse("snippets:user-list", request=request, format=format),
+            "users": reverse("user-list", request=request, format=format), # removing the snippets: and directly using view name 
             "snippets": reverse(
-                "snippets:snippet-list", request=request, format=format
+                "snippet-list", request=request, format=format
             ),
         }
     )

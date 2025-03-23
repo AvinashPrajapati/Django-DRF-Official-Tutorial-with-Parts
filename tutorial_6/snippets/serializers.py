@@ -5,9 +5,9 @@ from snippets.models import Snippet
 from django.contrib.auth.models import User
 
 class SnippetSerializer(serializers.HyperlinkedModelSerializer):
-    url = serializers.HyperlinkedIdentityField(view_name='snippets:snippet-detail', read_only=True) # error because of the snippets:  thing as the router is now directly in the main project urls.py rather than in snippets urls.py
+    url = serializers.HyperlinkedIdentityField(view_name='snippet-detail', read_only=True) # removing snippets: and directly mentioning the view name
     owner = serializers.ReadOnlyField(source='owner.username')
-    highlight = serializers.HyperlinkedIdentityField(view_name='snippets:snippet-highlight', format='html')
+    highlight = serializers.HyperlinkedIdentityField(view_name='snippet-highlight', format='html')
 
     class Meta:
         model = Snippet
@@ -19,8 +19,8 @@ class SnippetSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
-    url = serializers.HyperlinkedIdentityField(view_name='snippets:user-detail', read_only=True)
-    snippets = serializers.HyperlinkedRelatedField(many=True, view_name='snippets:snippet-detail', read_only=True)
+    url = serializers.HyperlinkedIdentityField(view_name='user-detail', read_only=True)
+    snippets = serializers.HyperlinkedRelatedField(many=True, view_name='snippet-detail', read_only=True)
 
     class Meta:
         model = User
